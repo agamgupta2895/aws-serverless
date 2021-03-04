@@ -1,0 +1,13 @@
+service: agam-serverless-testing
+provider:
+  name: aws
+  runtime: python3.7
+  stage: vellapanti
+  region: ap-south-1
+  stackName: my-stack-agam-serverless-testing
+
+functions:
+  - ${file(functions/myLambda/function.yml)}
+resources:
+  - ${file(functions/myLambda/resources.yml)}
+  - ${file(dynamodb/myTable/resources.yml)}

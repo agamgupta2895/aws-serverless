@@ -1,0 +1,7 @@
+MyLambda:
+  handler: lambda.lambda_handler
+  module: functions/myLambda
+  role: MyLambdaRole
+  memorySize: 512
+  timeout: 10
+  

@@ -1,0 +1,21 @@
+version: 0.2
+env:
+  variables:
+    TEST_VAR: "agam"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12.x
+    commands:
+      - npm install
+  pre_build:
+    commands:
+      - npm install
+      - echo $TEST_VAR
+  build:
+    commands:
+      - npx sls package --stage vella
+      - npx sls deploy --stage vella --package .serverless
+artifacts:
+  files:
+    - '**/*'

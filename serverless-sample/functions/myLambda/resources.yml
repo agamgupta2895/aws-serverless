@@ -1,0 +1,27 @@
+Resources:
+  MyTableDDBAccessPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: "my-lambda-ddb-policy-vellapanti"
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - 'dynamodb:*'
+            Resource: "*"
+  MyLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: my-lambda-role-vellapanti
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - { Ref: MyTableDDBAccessPolicy }
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
